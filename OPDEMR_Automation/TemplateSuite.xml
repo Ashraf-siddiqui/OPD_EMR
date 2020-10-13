@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<listeners>
+
+<listener class-name ="OPDEMR.base.MyTransformer"/>
+
+</listeners>
+<test name="test1">
+   <classes>
+      <class name="OPDEMR.tests.TemplatesTest">
+      <methods>
+      <include name="VerifyTheTestCasesForTemplateList"/>
+      </methods>
+      </class>
+      
+    </classes>
+    </test>
+    
+    
+     <test name="test2">
+    <classes>
+     <class name="OPDEMR.tests.TemplatesTest">
+      <methods>
+      <include name="VerifyCreatedTemplateAndDeleteIfAlreadyExist"/>
+      <include name="CreateATemplate"/>
+      <include name="VerifyCreatedTemplate"/>
+      <include name="EditATemplate"/>
+       </methods>
+        </class>
+    </classes>
+    
+    </test>
+    
+    
+    
+    
+</suite> <!-- Suite -->

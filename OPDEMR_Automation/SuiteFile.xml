@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+<listeners>
+
+<listener class-name ="OPDEMR.base.MyTransformer"/>
+
+</listeners>
+
+
+  <test name="Functionality test1">
+   
+   <classes>	
+	 <class name="OPDEMR.tests.LoginTest">
+      <methods>
+	 <include name="VerifyObjectsOfLoginPage"/>
+	 <include name="VerifyChangePasswordTestCases"/>  
+	 <include name ="VerifyChangePasswordAndLoggingInAndChangingAgain"/>
+	 </methods>	  
+    </class>
+    
+    
+     <class name="OPDEMR.tests.SearchTest">
+      <methods>
+	 <include name="VerifyValidationMessagesOfSeacrhPages"/>
+	 <include name="VerifySeacrhFunctionalityOfSeacrhPages"/>  
+	 </methods>	  
+    </class>    
+    <class name="OPDEMR.tests.CalendarTest">
+	<methods>
+	 <include name="BookSlotForAPatient"/>
+	 <include name="VerifyBookedSlotForAPatient"/>
+	
+	 <include name="RescheduleBookedSlotForAPatient"/>
+	 </methods>	  
+    </class>
+    
+     <class name="OPDEMR.tests.TemplatesTest">
+  
+    </class>
+  
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->

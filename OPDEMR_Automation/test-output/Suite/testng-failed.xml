@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" verbose="7" name="Failed suite [Suite]" parallel="tests">
+  <test name="test2(failed)" parallel="tests">
+    <classes>
+      <class name="OPDEMR.tests.OrderSetTest">
+        <methods>
+          <include name="initializePages"/>
+          <include name="initializePages"/>
+          <include name="driversetup"/>
+          <include name="driversetup"/>
+          <include name="CreateAOrderSet"/>
+          <include name="VerifyCreatedOrderSet"/>
+          <include name="afterMainMethod"/>
+          <include name="afterMainMethod"/>
+          <include name="before"/>
+          <include name="tearDownSuite"/>
+        </methods>
+      </class> <!-- OPDEMR.tests.OrderSetTest -->
+    </classes>
+  </test> <!-- test2(failed) -->
+</suite> <!-- Failed suite [Suite] -->
