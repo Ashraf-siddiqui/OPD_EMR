@@ -69,7 +69,7 @@ public class SoapConfiguration_AssesmentTest extends BaseTest{
 	public void VerifyTheTestCasesForSOAP_Assesment() throws Exception {
 		test = extent.startTest("Verifying the basic functionality of Order Sets");
 		test.log(LogStatus.INFO, "Successfully loaded login page of OPDEMR Application");
-		Log.info("Verify The Test Cases For OrderSet");
+		Log.info("Verify The Test Cases For Assessment Under SOAP Module");
 		pages.getLoginPage().LoadToOPDEMR();
 		
 		
