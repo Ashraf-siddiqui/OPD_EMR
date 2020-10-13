@@ -42,10 +42,10 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 	
 	By DeleteDialogBox=By.xpath("//div[@id='medicine-delete-confirm']");
 	By DeleteConfirm=By.xpath("//div[@tabindex='2']");
-	By ModalBox=By.xpath("//div[@id='drug-alert-message']");
+	By ModalBox=By.xpath("//main[@id='main']//following-sibling::div[@class='modal show']//button[1]");
 	
 	
-	
+	By ContinueButton=By.xpath("//button[text()='CONTINUE']");
 	
 	
 	public void ClickOnAny_SOAP_Button(String NameOfButton)
@@ -101,18 +101,18 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 	
 	public void Handle_Drug_Interaction_Alert_Box()
 	{
-		waitForElementToBecomeVisible(CloseDrugInteractionButton, longWait);
+		waitForElementToBecomeVisible(CloseDrugInteractionButton, shortWait);
 		if(isElementPresent(CloseDrugInteractionButton))
 		{
 			System.out.println("found Drug Interaction Box,Hence closing");
 		clickAndWait(CloseDrugInteractionButton, minimalWait);
 		
 		}
-		
-		while(getAttribute(ModalBox, "class").equals("modal"))
+		waitForElementToBecomeVisible(ModalBox, shortWait);
+		if(isElementPresent(ModalBox))
 		{
-			
-			
+			By yesBUtton=By.xpath("//button[@id='poly-pharmacy-yes']");
+			clickAndWait(yesBUtton, longWait);
 			
 		}
 		
@@ -124,7 +124,7 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 	public void DeleteDesiredMedicine(String MedicineName)
 	{
 		By MedicineName1=By.xpath("//div[@id='medicine-list']//tbody//td[text()='"+MedicineName+"']");
-		waitForElementToBecomeVisible(MedicineName1, longWait);
+		waitForElementToBecomeVisible(MedicineName1, shortWait);
 		
 		List<WebElement>rows=driver.get().findElements(By.xpath("//div[@id='medicine-list']//tbody//tr"));
 		
@@ -132,7 +132,10 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 		
 		for(int i=0;i<size;i++)
 		{
-			By DesiredMedicineNameDeleteButton=By.xpath("//div[@id='medicine-list']//tbody//td[text()='"+MedicineName+"']//following-sibling::td[position()=9]//a[2] ");
+			if(driver.get().findElement(By.xpath("//div[@id='medicine-list']//tbody//tr["+(i+1)+"]//td[1]")).getText().equals(MedicineName))
+			{
+			
+			By DesiredMedicineNameDeleteButton=By.xpath("//div[@id='medicine-list']//tbody//td[text()='"+MedicineName+"']//following-sibling::td[position()=9]//a[2]");
 
 		
 			
@@ -151,7 +154,7 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 			
 		}
 		
-		
+		}
 		
 		
 		
@@ -170,36 +173,31 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 		
 		for(int i=0;i<size;i++)
 		{
-			By DesiredMedicineNameEditButton=By.xpath("//div[@id='medicine-list']//tbody//td[text()='"+MedicineName+"']//following-sibling::td[position()=9]//a[1] ");
-
-		
-			
-			while(getAttribute(DeleteDialogBox, "class").equals("modal"))
+			if(driver.get().findElement(By.xpath("//div[@id='medicine-list']//tbody//tr["+(i+1)+"]//td[1]")).getText().equals(MedicineName))
 			{
+			By DesiredMedicineNameEditButton=By.xpath("//div[@id='medicine-list']//tbody//td[text()='"+MedicineName+"']//following-sibling::td[position()=9]//a[1] ");
+			
 				javascriptButtonClick(DesiredMedicineNameEditButton);
 				TestUtils.sleep(2);
 				
-				
-				
-			}
-			
-			
-			
-			
 		}
 		
-		
-		
-		
-		
-		
+		}
 	}
 	
 	
 	
 	
 	
-	
+	public void ClickOnContinueButton()
+	{
+		
+		waitForElementToBecomeVisible(ContinueButton, longWait);
+		
+		clickAndWait(ContinueButton, longWait);
+		
+		
+	}
 	
 	
 	

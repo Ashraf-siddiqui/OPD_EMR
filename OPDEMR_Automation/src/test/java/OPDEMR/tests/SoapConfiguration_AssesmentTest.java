@@ -46,24 +46,20 @@ public class SoapConfiguration_AssesmentTest extends BaseTest{
 		test.log(LogStatus.INFO, "Successfully Clicked On Assessment Button");
 		pages.getSoapConfiguration_AssesmentPage().ClickOnAny_SOAP_Button("P");
 		
+		
+		test.log(LogStatus.INFO, "Successfully Handled Drug Interaction Alert Box.");
+		pages.getSoapConfiguration_AssesmentPage().DeleteDesiredMedicine("Disprin Tablet");
+		
+		
 		test.log(LogStatus.INFO, "Successfully Added Medicines");
-		pages.getTemplatesPages().AddMedicineswithTaperDose("Althrocin 500 Tablet");
+		pages.getTemplatesPages().AddMedicines("Disprin ");
 		
 		test.log(LogStatus.INFO, "Successfully Handled Drug Interaction Alert Box.");
 		pages.getSoapConfiguration_AssesmentPage().Handle_Drug_Interaction_Alert_Box();
 		
-		test.log(LogStatus.INFO, "Successfully Clicked on edit button of desired medicine name.");
-		pages.getSoapConfiguration_AssesmentPage().EditDesiredMedicine("Althrocin 500 Tablet");
-		
-		
-		
-		test.log(LogStatus.INFO, "Successfully Added Medicines");
-		pages.getTemplatesPages().AddMedicineswithTaperDose("Althrocin 500 Tablet");
-		
+		test.log(LogStatus.INFO, "Successfully Clicked on Continue ");
+		pages.getSoapConfiguration_AssesmentPage().ClickOnContinueButton();
 
-		test.log(LogStatus.INFO, "Successfully Handled Drug Interaction Alert Box.");
-		pages.getSoapConfiguration_AssesmentPage().DeleteDesiredMedicine("Althrocin 500 Tablet");
-		
 		
 		
 	}
