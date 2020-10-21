@@ -42,10 +42,18 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 	
 	By DeleteDialogBox=By.xpath("//div[@id='medicine-delete-confirm']");
 	By DeleteConfirm=By.xpath("//div[@tabindex='2']");
-	By ModalBox=By.xpath("//main[@id='main']//following-sibling::div[@class='modal show']//button[1]");
+	By ModalBox=By.xpath("//main[@id='main']//following-sibling::div[@class='modal show']//button[2]");
 	
 	
-	By ContinueButton=By.xpath("//button[text()='CONTINUE']");
+	By ContinueButton=By.xpath("//*[text()='CONTINUE']");
+	
+	//---------------------------------------------------InstructionPage------------------------------------
+	
+	
+	By InstructionCheckBox=By.xpath("//input[@type='checkbox']");
+	
+	By ConfirmButtonOnInstructionPage=By.xpath("//div[contains(text(),'CONFIRM')]");
+	
 	
 	
 	public void ClickOnAny_SOAP_Button(String NameOfButton)
@@ -111,8 +119,8 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 		waitForElementToBecomeVisible(ModalBox, shortWait);
 		if(isElementPresent(ModalBox))
 		{
-			By yesBUtton=By.xpath("//button[@id='poly-pharmacy-yes']");
-			clickAndWait(yesBUtton, longWait);
+		//	By yesBUtton=By.xpath("//button[@id='poly-pharmacy-yes']");
+			clickAndWait(ModalBox, longWait);
 			
 		}
 		
@@ -198,6 +206,39 @@ public class SoapConfiguration_AssesmentPage extends BasePage {
 		
 		
 	}
+	
+	
+	
+	
+	public void ClickOnAnyRandomInstruction(String NameOfCheckbox)
+	{
+		List<WebElement>Elements=driver.get().findElements(InstructionCheckBox);
+		loop:
+		for(WebElement Element:Elements)
+		{
+			
+			if(Element.getText().contains(NameOfCheckbox))
+			{
+				Element.click();
+				break loop;
+			}
+		}
+		
+		
+	}
+	
+	
+	public void ClickOnConfirmButtonOnInstructionsPage()
+	{
+		waitForElementToBecomeVisibleDuplicate(ConfirmButtonOnInstructionPage, longWait);
+		clickAndWait(ConfirmButtonOnInstructionPage, longWait);	
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	

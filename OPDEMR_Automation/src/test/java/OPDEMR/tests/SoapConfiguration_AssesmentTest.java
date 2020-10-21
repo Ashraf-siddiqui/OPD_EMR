@@ -48,7 +48,7 @@ public class SoapConfiguration_AssesmentTest extends BaseTest{
 		
 		
 		test.log(LogStatus.INFO, "Successfully Handled Drug Interaction Alert Box.");
-		pages.getSoapConfiguration_AssesmentPage().DeleteDesiredMedicine("Disprin Tablet");
+		pages.getSoapConfiguration_AssesmentPage().DeleteDesiredMedicine("Disprin  Tablet");
 		
 		
 		test.log(LogStatus.INFO, "Successfully Added Medicines");
@@ -60,6 +60,21 @@ public class SoapConfiguration_AssesmentTest extends BaseTest{
 		test.log(LogStatus.INFO, "Successfully Clicked on Continue ");
 		pages.getSoapConfiguration_AssesmentPage().ClickOnContinueButton();
 
+		
+		test.log(LogStatus.INFO, "Successfully Added a Test. ");
+		pages.getTemplatesPages().AddTest("Alt");
+		
+		
+		test.log(LogStatus.INFO, "Successfully Clicked on Continue ");
+		pages.getSoapConfiguration_AssesmentPage().ClickOnContinueButton();
+
+		test.log(LogStatus.INFO, "Successfully Checked the Instruction CheckBox.");
+		pages.getSoapConfiguration_AssesmentPage().ClickOnAnyRandomInstruction("do nothing");
+		
+		
+		test.log(LogStatus.INFO, "Successfully Clicked On Confirmation Button.");
+		pages.getSoapConfiguration_AssesmentPage().ClickOnConfirmButtonOnInstructionsPage();
+		
 		
 		
 	}
@@ -97,9 +112,9 @@ public class SoapConfiguration_AssesmentTest extends BaseTest{
 		pages.getSoapConfiguration_AssesmentPage().ClickOnAny_SOAP_Button("A");
 		
 		
-		
-		
 	}
+
+	
 	
 	
 	
