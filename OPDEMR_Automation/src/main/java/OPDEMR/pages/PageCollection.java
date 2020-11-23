@@ -34,6 +34,14 @@ public class PageCollection {
 	private OrderSetPage orderSetPage;
 	
 	private SoapConfiguration_AssesmentPage soapConfiguration_AssesmentPage;
+	
+	private SoapConfiguration_PlanPage soapConfiguration_PlanPage;
+	
+	private SoapMainPage soapMainPage;
+	
+	private ReferralPage referralPage;
+	
+	private ObjectivePage objectivePage;
 	/**
 	 * Instantiates a new page collection.
 	 *
@@ -90,5 +98,22 @@ public class PageCollection {
 	public SoapConfiguration_AssesmentPage getSoapConfiguration_AssesmentPage() {
 		return (soapConfiguration_AssesmentPage == null) ? soapConfiguration_AssesmentPage = new SoapConfiguration_AssesmentPage(driver) : soapConfiguration_AssesmentPage;
 	}
+	public SoapConfiguration_PlanPage getSoapConfiguration_PlanPage() {
+		return (soapConfiguration_PlanPage == null) ? soapConfiguration_PlanPage = new SoapConfiguration_PlanPage(driver) : soapConfiguration_PlanPage;
+	}
+	
+	public SoapMainPage getSoapMainPage() {
+		return (soapMainPage == null) ? soapMainPage = new SoapMainPage(driver) : soapMainPage;
+	}
+	
+	public ReferralPage getReferralPage() {
+		return (referralPage == null) ? referralPage = new ReferralPage(driver) : referralPage;
+	}
+	
+	public ObjectivePage getObjectivePage() {
+		return (objectivePage == null) ? objectivePage = new ObjectivePage(driver) : objectivePage;
+	}
+	
+	
 	
 }

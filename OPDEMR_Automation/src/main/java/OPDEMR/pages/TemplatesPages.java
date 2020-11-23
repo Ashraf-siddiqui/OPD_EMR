@@ -57,7 +57,7 @@ public class TemplatesPages extends BasePage{
 	
 	By DiagnosisOptions=By.xpath("//ul[@id='select2-diagnosis-results']//li");
 	
-	By AddButton=By.xpath("//button[text()='Add']");
+	By AddButton=By.xpath("//button[@id='drug-save']");
 	
 	
 	By ComboBox=By.xpath("//span[@id='select2-diagnosis-container']//parent::span[@role='combobox']");
@@ -89,8 +89,13 @@ public class TemplatesPages extends BasePage{
 	
 	By AddButtonTaper=By.xpath("//button[@id='drug-save-taper']");
 	
+	By specificRadioButtonOfFrequency=By.xpath("//div[@class='row my-3']//div[2]//input");
 	
+	By prnRadioButtonOfFrequency=By.xpath("//input[@id='prn']");
 	
+	By StrengthField=By.xpath("//input[@id='strength']");
+	
+	By ClearButton=By.xpath("//div[@id='drug-clear']");
 	//------------------------------------------------------------ADD Test------------------------------------------------	
 
 	
@@ -102,7 +107,7 @@ public class TemplatesPages extends BasePage{
 	 
 	By AddTestButton=By.xpath("//button[@id='test-save']");
 	
-	
+	By DeleteTestModel=By.xpath("//div[@id='plan-delete-test']");
 	
 	By SaveTemplateBUtton=By.xpath("//button[contains(@class,'template-save')]");
 	
@@ -299,6 +304,29 @@ public class TemplatesPages extends BasePage{
 		
 		while(getAttribute(DrugField, "aria-expanded").equals("false"))
 		{
+		//	CLickUsingActionClass(AddMedicineArrow);
+			javascriptButtonClick(AddMedicineArrow);
+			TestUtils.sleep(3);
+		}	
+			setText(DiagnosisInputField, NameOfMedicines, longWait);
+			waitForElementToBecomeVisible(MedicinesOptions, longWait);
+			//javascriptButtonClick(DiagnosisOptions);
+			//pressEnter();
+			TestUtils.sleep(5);
+			CLickUsingActionClass(MedicinesOptions);
+			
+			TestUtils.sleep(5);
+			javascriptButtonClick(AddMedicineButton);
+				
+	}
+	
+
+	public void AddMedicines(String NameOfMedicines,String Frequency)
+	{
+	//	scrollToElement(AddMedicineButton);
+		
+		while(getAttribute(DrugField, "aria-expanded").equals("false"))
+		{
 			CLickUsingActionClass(AddMedicineArrow);
 			TestUtils.sleep(3);
 		}	
@@ -309,12 +337,99 @@ public class TemplatesPages extends BasePage{
 			TestUtils.sleep(5);
 			CLickUsingActionClass(MedicinesOptions);
 			TestUtils.sleep(5);
+//			SelectFrequencyOfMedicine(Frequency);
 			javascriptButtonClick(AddMedicineButton);
-				
+			
+	}
+	
+	public void CLickOnAddmedicineButton()
+	{
+		javascriptButtonClick(AddMedicineButton);
 	}
 	
 	
 	
+	
+	
+	public void AddAMedicineToTest(String NameOfMedicines,String Frequency)
+	{
+		scrollToElement(AddMedicineButton);
+		
+		while(getAttribute(DrugField, "aria-expanded").equals("false"))
+		{
+			CLickUsingActionClass(AddMedicineArrow);
+			TestUtils.sleep(3);
+		}	
+			setText(DiagnosisInputField, NameOfMedicines, longWait);
+			waitForElementToBecomeVisible(MedicinesOptions, longWait);
+			//javascriptButtonClick(DiagnosisOptions);
+			//pressEnter();
+			TestUtils.sleep(5);
+			CLickUsingActionClass(MedicinesOptions);
+			TestUtils.sleep(5);
+			SelectFrequencyOfMedicine(Frequency);
+	//		javascriptButtonClick(AddMedicineButton);
+			
+	}
+	
+	
+	
+	public void ClickOnClearButton()
+	{
+		while(!getValueOfStrengthNameField().isEmpty())
+		javascriptButtonClick(ClearButton);
+		TestUtils.sleep(2);
+	}
+	
+	
+	public String getValueOfStrengthNameField()
+	{
+		return getText(StrengthField);
+		
+	}
+	
+	
+	
+	public boolean VerifyStateOfAddButton()
+	{
+	//	scrollToElement(locator);
+		waitForElementToBecomeVisible(AddButton, minimalWait);
+		return driver.get().findElement(AddButton).isEnabled();
+	}
+	
+	public void ChangeStrengthField(String str)
+	{
+		setText(StrengthField, str, longWait);
+		TestUtils.sleep(5);
+		
+	}
+	
+	
+	
+	
+	
+	
+	public void SelectFrequencyOfMedicine(String Frequency)
+	{
+		if(Frequency.contains("Specific"))
+		{
+			if(!driver.get().findElement(specificRadioButtonOfFrequency).isSelected())
+			{
+				CLickUsingActionClass(specificRadioButtonOfFrequency);
+			}
+		}
+		
+		if(Frequency.contains("PRN"))
+		{
+			if(!driver.get().findElement(prnRadioButtonOfFrequency).isSelected())
+			{
+				CLickUsingActionClass(prnRadioButtonOfFrequency);
+			}
+		}
+		
+		
+		
+	}
 	
 	public void AddMedicineswithTaperDose(String NameOfMedicines)
 	{
@@ -365,9 +480,70 @@ public class TemplatesPages extends BasePage{
 			TestUtils.sleep(5);
 			CLickUsingActionClass(TestOptions);
 //			TestUtils.sleep(5);
-//			javascriptButtonClick(AddTestButton);
-				
+		//	javascriptButtonClick(AddTestButton);
+			clickAndWait(AddTestButton, longWait);	
 	}
+	
+	
+	public boolean DeleteDesiredTest(String NameOfTest)
+	{
+
+
+		By AllTest = By.xpath("//div[@id='test-list-lab']//tbody//tr//td[1]");
+
+		List<WebElement> listOfTest = driver.get().findElements(AllTest);
+
+		waitForElementToBecomeVisible(AllTest, longWait);
+
+		if (isElementPresent(AllTest)) {
+
+			if (listOfTest.size() > 0) {
+				
+				for(int i=0;i<listOfTest.size();i++)
+				{
+					if(listOfTest.get(i).equals(NameOfTest))
+					{
+						
+						By DesiredTest = By.xpath("//div[@id='test-list-lab']//tbody//tr"+(i+1)+"//td[4]//a[contains(@class,'remove-test')]");
+	
+						while (getAttribute(DeleteTestModel, "class").equals("modal")) {
+							javascriptButtonClick(DesiredTest);
+							TestUtils.sleep(2);
+						}
+
+						while (getAttribute(DeleteTestModel, "class").equals("modal show")) {
+							javascriptButtonClick(DeleteConfirm);
+							TestUtils.sleep(2);
+							return true;
+						}
+						
+					}
+					
+					
+				}
+				
+				
+				
+				
+
+
+			}
+
+		}
+
+		return false;
+
+
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public void ClickOnSaveTemplateButton()

@@ -141,6 +141,17 @@ public class BasePage {
 		tempWait.until(ExpectedConditions.elementToBeClickable(el));
 		el.click();
 	}
+	
+	public final void clickAndWaitTillAnotherElementIsVisible(By locator, By AnotherLocator) {
+	
+		waitForElementToBecomeVisibleDuplicate(locator, longWait);
+		while(!isElementPresent(AnotherLocator))
+		{
+			clickAndWait(locator, longWait);
+			
+		}
+	}
+	
 
 	/**
 	 * Sets the text.
@@ -286,6 +297,14 @@ public class BasePage {
 
 	}
 
+	public void SettextByJavaScript(By element,String text)
+	{
+		String inputText = "Rozmeen";
+		WebElement myElement = driver.get().findElement(element);
+		String js = "arguments[0].setAttribute('value','"+text+"')";
+		((JavascriptExecutor) driver.get()).executeScript(js, myElement);
+	}
+	
 	public void Click(By locator) {
 		driver.get().findElement(locator).click();
 	}
@@ -602,7 +621,7 @@ public class BasePage {
 	
 	public void CLickUsingActionClass(By Locator)
 	{
-		System.out.println("clicked using action class");
+		System.out.println("clicked using action class this element "+getText(Locator));
 		new Actions(driver.get()).moveToElement(driver.get().findElement(Locator)).click().build().perform();
 		
 	}

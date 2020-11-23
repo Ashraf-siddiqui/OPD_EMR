@@ -198,8 +198,8 @@ public class BaseTest {
 
 		default:
 			Log.info("browser not mentioned,using chrome");
-			createChromeDriver();
-		//	createFirefoxdriver();
+		//	createChromeDriver();
+			createFirefoxdriver();
 			break;
 		}
 	}

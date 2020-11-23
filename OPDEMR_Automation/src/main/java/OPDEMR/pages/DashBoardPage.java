@@ -15,7 +15,7 @@ public class DashBoardPage extends BasePage {
 		// TODO Auto-generated constructor stub
 	}
 
-	By HospitalCard=By.className("card-body");
+	By HospitalCard=By.xpath("//div[@class='card-body']");
 	By NameOfHospital=By.xpath("//div[@class='text-center']/*[1]");
 	By Timings=By.xpath("//div[@class='text-center']/*[2]");
 	
@@ -23,9 +23,10 @@ public class DashBoardPage extends BasePage {
 	
 	By ArrivedPatientCount=By.xpath("//div[@class='text-center']/div[1]/div[2]/div");
 	
-	
-	
 	By FirstUHID=By.xpath("//div[@id='patient-queue-pending']//div[@class='float-left']//span[position()=3 and contains(text(),'UHID')]");
+	
+	By OKButton=By.xpath("//div[@id='pendingPatientsConfirmOK']");
+	
 	
 	public List VerifyHospitalInfo()
 	{
@@ -40,10 +41,9 @@ public class DashBoardPage extends BasePage {
 	
 	public void ClickOnHospitalCard()
 	{
+		//clickAndWaitTillAnotherElementIsVisible(HospitalCard, OKButton);
 		waitForElementToBecomeVisible(HospitalCard, longWait);
-		
-		clickAndWait(HospitalCard, shortWait);
-		
+		clickAndWait(HospitalCard, longWait);
 	}
 	
 	
